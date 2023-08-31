@@ -36,10 +36,10 @@ for i in trange(len(links)):
     links[i].click()
     sleep(0.5)
     
-    article = driver.find_element(By.TAG_NAME, "article")
+    article = driver.find_element(By.CSS_SELECTOR, "article[itemtype='https://schema.org/Article']")
+    article_id = article.get_attribute("id")
 
-    title = article.find_element(By.TAG_NAME, "h1")
-    with open(f"articles/{title.text}.txt", "w", encoding="utf-8") as txtf:
+    with open(f"articles/{article_id}.txt", "w", encoding="utf-8") as txtf:
         txtf.write(article.text)
     
     links = get_article_links(driver, url)
