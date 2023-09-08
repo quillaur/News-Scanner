@@ -63,6 +63,7 @@ for root, dirs, files in os.walk("articles"):
                 VALUES (:nom)
             ''', [auteur])
 
+
             # Exemple d'insertion d'un article avec des indicateurs
             article1 = {
                 'titre': title,
