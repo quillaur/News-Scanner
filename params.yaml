@@ -1,0 +1,8 @@
+featurize:
+  max_sample: 1200
+  min_df: 0.01
+  pca_ratio: 0.85
+
+train:
+  test_size: 0.3
+  svc_kernel: "rbf"

@@ -1,0 +1,24 @@
+stages:
+  featurize:
+    cmd: python featurize.py dataset features/preprocessed_ds.csv
+    deps:
+    - dataset
+    - featurize.py
+    params:
+    - featurize.max_sample
+    - featurize.min_df
+    - featurize.pca_ratio
+    outs:
+    - features/preprocessed_ds.csv
+  train:
+    cmd: python train.py features models/svc.joblib
+    deps:
+    - features
+    - train.py
+    params:
+    - train.svc_kernel
+    - train.test_size
+    outs:
+    - models/svc.joblib
+metrics:
+- eval/metrics.json

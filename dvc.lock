@@ -1,0 +1,45 @@
+schema: '2.0'
+stages:
+  featurize:
+    cmd: python featurize.py dataset features/preprocessed_ds.csv
+    deps:
+    - path: dataset
+      hash: md5
+      md5: 98072d07fc3adebfb04457def78e32ae.dir
+      size: 29066993
+      nfiles: 1
+    - path: featurize.py
+      hash: md5
+      md5: 53a1832f9370b231719af0ec1bdc0d55
+      size: 852
+    params:
+      params.yaml:
+        featurize.max_sample: 1200
+        featurize.min_df: 0.01
+        featurize.pca_ratio: 0.85
+    outs:
+    - path: features/preprocessed_ds.csv
+      hash: md5
+      md5: 61e42116c47d6c855896067c9263edaf
+      size: 444321
+  train:
+    cmd: python train.py features models/svc.joblib
+    deps:
+    - path: features
+      hash: md5
+      md5: ef8700297b84034897fed83690fe11b5.dir
+      size: 444321
+      nfiles: 1
+    - path: train.py
+      hash: md5
+      md5: 6275e9d16733eefbce7c1c532fc0197a
+      size: 1267
+    params:
+      params.yaml:
+        train.svc_kernel: rbf
+        train.test_size: 0.3
+    outs:
+    - path: models/svc.joblib
+      hash: md5
+      md5: ac2c7106a9a9f793eed51af6d32a4fe5
+      size: 166479
