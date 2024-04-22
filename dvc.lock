@@ -16,19 +16,19 @@ stages:
       params.yaml:
         featurize.max_sample: 1200
         featurize.min_df: 0.01
-        featurize.pca_ratio: 0.85
+        featurize.pca_ratio: 0.95
     outs:
     - path: features/preprocessed_ds.csv
       hash: md5
-      md5: 61e42116c47d6c855896067c9263edaf
-      size: 444321
+      md5: 106ad1a347e1e297eb4f6121157597b4
+      size: 547482
   train:
     cmd: python train.py features models/svc.joblib
     deps:
     - path: features
       hash: md5
-      md5: ef8700297b84034897fed83690fe11b5.dir
-      size: 444321
+      md5: 64711c2fca903f73502417b5ffbaa877.dir
+      size: 547482
       nfiles: 1
     - path: train.py
       hash: md5
@@ -36,10 +36,10 @@ stages:
       size: 1267
     params:
       params.yaml:
-        train.svc_kernel: rbf
+        train.svc_kernel: linear
         train.test_size: 0.3
     outs:
     - path: models/svc.joblib
       hash: md5
-      md5: ac2c7106a9a9f793eed51af6d32a4fe5
-      size: 166479
+      md5: 0b2a2f7b4d70e6a842b2aefe09b7fa33
+      size: 174655
