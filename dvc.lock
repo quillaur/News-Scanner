@@ -32,14 +32,32 @@ stages:
       nfiles: 1
     - path: train.py
       hash: md5
-      md5: 6275e9d16733eefbce7c1c532fc0197a
-      size: 1267
+      md5: 7c58d9161383ab5875adb98a5711997c
+      size: 611
     params:
       params.yaml:
-        train.svc_kernel: linear
+        train.svc_kernel: rbf
         train.test_size: 0.3
     outs:
     - path: models/svc.joblib
       hash: md5
-      md5: 0b2a2f7b4d70e6a842b2aefe09b7fa33
-      size: 174655
+      md5: 0a183d24fae61267f2328d6e8b131a34
+      size: 193647
+  evaluate:
+    cmd: python evaluate.py features/preprocessed_ds.csv models/svc.joblib
+    deps:
+    - path: evaluate.py
+      hash: md5
+      md5: 330fb8ffdbf62aa121cb1a35eb1a963f
+      size: 1301
+    - path: features/preprocessed_ds.csv
+      hash: md5
+      md5: 106ad1a347e1e297eb4f6121157597b4
+      size: 547482
+    - path: models/svc.joblib
+      hash: md5
+      md5: 0a183d24fae61267f2328d6e8b131a34
+      size: 193647
+    params:
+      params.yaml:
+        evaluate.test_size: 0.3

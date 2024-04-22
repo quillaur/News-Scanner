@@ -5,4 +5,7 @@ featurize:
 
 train:
   test_size: 0.3
-  svc_kernel: linear
+  svc_kernel: rbf
+
+evaluate:
+  test_size: 0.3

@@ -20,5 +20,22 @@ stages:
     - train.test_size
     outs:
     - models/svc.joblib
+  evaluate:
+    cmd: python evaluate.py features/preprocessed_ds.csv models/svc.joblib
+    deps:
+    - evaluate.py
+    - features/preprocessed_ds.csv
+    - models/svc.joblib
+    params:
+    - evaluate.test_size
+
 metrics:
 - eval/metrics.json
+plots:
+- eval/plots/sklearn/cm/test.json:
+    template: confusion
+    x: actual
+    y: predicted
+    title: Confusion Matrix
+    x_label: True Label
+    y_label: Predicted Label
