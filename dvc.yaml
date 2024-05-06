@@ -20,3 +20,11 @@ stages:
     - train.test_size
     outs:
     - svc.joblib
+  evaluate:
+    cmd: python mlops_dvc/evaluate.py dataset/preprocessed_ds.csv svc.joblib
+    deps:
+    - dataset/preprocessed_ds.csv
+    - mlops_dvc/evaluate.py
+    - svc.joblib
+    params:
+    - evaluate.test_size

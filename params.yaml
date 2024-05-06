@@ -2,3 +2,10 @@ featurize:
   max_samples: 1200
   min_df: 0.01
   pca_ratio: 0.85
+
+train:
+  kernel: rbf
+  test_size: 0.3
+
+evaluate:
+  test_size: 0.3
