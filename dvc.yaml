@@ -1,0 +1,12 @@
+stages:
+  featurize:
+    cmd: python mlops_dvc/featurize.py
+    deps:
+    - dataset/train.csv
+    - mlops_dvc/featurize.py
+    params:
+    - featurize.max_samples
+    - featurize.min_df
+    - featurize.pca_ratio
+    outs:
+    - dataset/preprocessed_ds.csv

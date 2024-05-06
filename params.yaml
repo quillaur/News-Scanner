@@ -1,0 +1,4 @@
+featurize:
+  max_samples: 1200
+  min_df: 0.01
+  pca_ratio: 0.85
