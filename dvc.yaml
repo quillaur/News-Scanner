@@ -10,3 +10,13 @@ stages:
     - featurize.pca_ratio
     outs:
     - dataset/preprocessed_ds.csv
+  train:
+    cmd: python mlops_dvc/train.py dataset/preprocessed_ds.csv svc.joblib
+    deps:
+    - dataset/preprocessed_ds.csv
+    - mlops_dvc/train.py
+    params:
+    - train.kernel
+    - train.test_size
+    outs:
+    - svc.joblib
